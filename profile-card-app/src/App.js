@@ -3,7 +3,7 @@ import "./styles.css";
 export default function App() {
   return (
     <div className="card">
-      <Avatra></Avatra>
+      <Avator></Avator>
       <div className="data">
         <Intro></Intro>
         <Skillset></Skillset>
@@ -12,8 +12,8 @@ export default function App() {
   );
 }
 
-function Avatra() {
-  return <img src="jonas.jpg" alt="jonas pic" className="avatar" />;
+function Avator() {
+  return <img src="jonas.jpg" alt="Jonas pic" className="avatar" />;
 }
 
 function Intro() {
@@ -32,18 +32,21 @@ function Intro() {
 function Skillset() {
   return (
     <div className="skill-list">
-      <Skill skill="HTML+CSS" emoji="💪" bgColor="orange"></Skill>
-      <Skill skill="Javscript" emoji="💪" bgColor="green"></Skill>
-      <Skill skill="Git & GitHub" emoji="💪" bgColor="yellow"></Skill>
-      <Skill skill="ReactJs" emoji="💪" bgColor="red"></Skill>
-      <Skill skill="Python" emoji="💪" bgColor="blue"></Skill>
+      <Skill skillName="HTML" bgColor="#ffbe76" emoji="💪"></Skill>
+      <Skill skillName="CSS" bgColor="#ff7979" emoji="💪"></Skill>
+      <Skill skillName="Javscript" bgColor="#badc58" emoji="💪"></Skill>
+      <Skill skillName="React" bgColor="#f9ca24" emoji="💪"></Skill>
+      <Skill skillName="Git" bgColor="#00b894" emoji="💪"></Skill>
+      <Skill skillName="GitHub" bgColor="#686de0" emoji="💪"></Skill>
+      <Skill skillName="Python" bgColor="#22a6b3" emoji="💪"></Skill>
     </div>
   );
 }
+
 function Skill(props) {
   return (
     <div className="skill" style={{ backgroundColor: props.bgColor }}>
-      <span>{props.skill}</span>
+      <span>{props.skillName}</span>
       <span>{props.emoji}</span>
     </div>
   );
