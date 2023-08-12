@@ -4,6 +4,8 @@ const initialItems = [
   { id: 1, description: "Passports", quantity: 2, packed: false },
   { id: 2, description: "Socks", quantity: 12, packed: false },
   { id: 3, description: "Charger", quantity: 1, packed: true },
+  { id: 4, description: "Charger", quantity: 1, packed: true },
+  { id: 5, description: "Charger", quantity: 1, packed: true },
 ];
 
 export default function App() {
@@ -13,11 +15,18 @@ export default function App() {
     setItemsArr((curItems) => [...curItems, item]);
   }
 
+  function handleDeleteItem(id) {
+    setItemsArr((curItems) => curItems.filter((item) => item.id !== id));
+  }
+
   return (
     <div className="app">
       <Logo></Logo>
       <Form onAddItems={handleAddItem}></Form>
-      <PackingList itemsArr={itemsArr}></PackingList>
+      <PackingList
+        itemsArr={itemsArr}
+        onDeleteItem={handleDeleteItem}
+      ></PackingList>
       <Stats></Stats>
     </div>
   );
@@ -74,25 +83,25 @@ function Form({ onAddItems }) {
   );
 }
 
-function PackingList({ itemsArr }) {
+function PackingList({ itemsArr, onDeleteItem }) {
   return (
     <div className="list">
       <ul>
         {itemsArr.map((item) => (
-          <Item itemObj={item} key={item.id}></Item>
+          <Item itemObj={item} onDeleteItem={onDeleteItem} key={item.id}></Item>
         ))}
       </ul>
     </div>
   );
 }
 
-function Item({ itemObj }) {
+function Item({ itemObj, onDeleteItem }) {
   return (
     <li>
       <span style={itemObj.packed ? { textDecoration: "line-through" } : {}}>
         {itemObj.description} {itemObj.quantity}
       </span>
-      <button>❌</button>
+      <button onClick={() => onDeleteItem(itemObj.id)}>❌</button>
     </li>
   );
 }
