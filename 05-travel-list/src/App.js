@@ -2,10 +2,10 @@ import { useState } from "react";
 
 const initialItems = [
   { id: 1, description: "Passports", quantity: 2, packed: false },
-  { id: 2, description: "Socks", quantity: 12, packed: false },
   { id: 3, description: "Charger", quantity: 1, packed: true },
-  { id: 4, description: "Charger", quantity: 1, packed: true },
-  { id: 5, description: "Charger", quantity: 1, packed: true },
+  { id: 2, description: "SoCks", quantity: 12, packed: false },
+  { id: 4, description: "watch", quantity: 1, packed: true },
+  { id: 5, description: "Apple laptop", quantity: 1, packed: true },
 ];
 
 export default function App() {
@@ -92,10 +92,31 @@ function Form({ onAddItems }) {
 }
 
 function PackingList({ itemsArr, onDeleteItem, onToggleItems }) {
+  let [sortBy, setSortBy] = useState("input");
+  let sortedArr;
+
+  if (sortBy === "input") {
+    sortedArr = itemsArr.slice();
+  } else if (sortBy === "packed") {
+    sortedArr = itemsArr
+      .slice()
+      .sort((a, b) => Number(a.packed) - Number(b.packed));
+  } else if (sortBy === "description") {
+    sortedArr = itemsArr.slice().sort((a, b) => {
+      let sa = a.description.toLowerCase();
+      let sb = b.description.toLowerCase();
+      if (sa < sb) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  }
+
   return (
     <div className="list">
       <ul>
-        {itemsArr.map((item) => (
+        {sortedArr.map((item) => (
           <Item
             itemObj={item}
             onDeleteItem={onDeleteItem}
@@ -104,6 +125,14 @@ function PackingList({ itemsArr, onDeleteItem, onToggleItems }) {
           ></Item>
         ))}
       </ul>
+
+      <div className="actions">
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+          <option value="input">Sort by input value</option>
+          <option value="description">Sort by description</option>
+          <option value="packed">Sort by packed status</option>
+        </select>
+      </div>
     </div>
   );
 }
