@@ -1,6 +1,5 @@
 import "../styles.css";
 import AccordionV1 from "./AccordionV1";
-import AccordionV2 from "./AccordionV2";
 
 const faqs = [
   {
@@ -20,8 +19,7 @@ const faqs = [
 export default function App() {
   return (
     <div>
-      {/* <AccordionV1 data={faqs} /> */}
-      <AccordionV2 data={faqs}></AccordionV2>
+      <AccordionV1 data={faqs} />
     </div>
   );
 }
