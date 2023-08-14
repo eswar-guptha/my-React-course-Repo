@@ -1,27 +1,12 @@
 import { useState } from "react";
+// import { messages } from "./App";
 
-const messages = [
-  "Learn React ⚛️",
-  "Apply for jobs 💼",
-  "Invest your new income 🤑",
-];
-
-export default function App() {
-  return (
-    <div>
-      <Steps></Steps>
-      <Steps></Steps>
-    </div>
-  );
-}
-
-function Steps() {
+export default function StepsV1({ msg }) {
   let [step, setStep] = useState(1);
   let [isOpen, setIsOpen] = useState(true);
   // let [test, setTest] = useState({
   //   name: "Eswar",
   // });
-
   function handlePrevious() {
     if (step > 1) setStep((curStep) => curStep - 1);
   }
@@ -48,7 +33,7 @@ function Steps() {
           </div>
 
           <p className="message">
-            Step {step}: {messages[step - 1]}
+            Step {step}: {msg[step - 1]}
           </p>
 
           <div className="buttons">
