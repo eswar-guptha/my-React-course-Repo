@@ -1,4 +1,5 @@
 import StepsV1 from "./StepsV1";
+import StepsV2 from "./StepsV2";
 
 export const messages = [
   "Learn React ⚛️",
@@ -10,7 +11,7 @@ export default function App() {
   return (
     <div>
       <StepsV1 msg={messages}></StepsV1>
-      {/* <StepsOne></StepsOne> */}
+      <StepsV2 msg={messages}></StepsV2>
     </div>
   );
 }
